@@ -52,76 +52,103 @@
     <h1>Rock, paper, scissors game</h1>
     <div>
     <button onclick="
-    let UserChoice = 'ROCK';
-    let CompChoice='';
-    let result='';
-    let RandomNum = Math.random()*3;
-    if(RandomNum > 0 && RandomNum < 1){
-      CompChoice = 'Rock';
-      result = `it's a tie`;
-    }
-
-    else if(RandomNum > 1 && RandomNum < 2){
-      CompChoice = 'papper';
-      result = `HaHa you loose`;
-    }
-
-    else if(RandomNum > 2 && RandomNum < 3){
-      CompChoice = 'scissores';
-      result = `You Win`;
-    }
-
-    alert(`User Choice is ${UserChoice} And Computer Choice is ${CompChoice} result is ${result}`);
+    let UserChoice = 'Rock';
+    let CompChoice= getcompchoice();
+    let result= getResult(CompChoice, UserChoice);
+    alert(`User Choice = ${UserChoice}
+Computer Choice = ${CompChoice} 
+result = ${result}
+win : ${count.win} loose : ${count.loose} tie : ${count.tie}`);
     "
     >Rock</button>
     
     <button 
-    onclick=" UserChoice = 'paper';
-     CompChoice='';
-     result='';
-     RandomNum = Math.random()*3;
-    if(RandomNum > 0 && RandomNum < 1){
-      CompChoice = 'Rock';
-      result = `You Win`;
-    }
-
-    else if(RandomNum > 1 && RandomNum < 2){
-      CompChoice = 'papper';
-      result = `it's a tie`;
-    }
-
-    else if(RandomNum > 2 && RandomNum < 3){
-      CompChoice = 'scissores';
-      result = `You loose`;
-    }
-
-    alert(`User Choice is ${UserChoice} And Computer Choice is ${CompChoice} result is ${result}`);" 
-    >paper</button>
-
+    onclick=" UserChoice = 'Paper';
+     CompChoice= getcompchoice();
+     result=getResult(CompChoice, UserChoice);
+     alert(`User Choice = ${UserChoice}
+Computer Choice = ${CompChoice} 
+result = ${result}
+win : ${count.win} loose : ${count.loose} tie : ${count.tie}`);
+         "    >paper</button>
 
     <button 
-    onclick=" UserChoice = 'Scissors';
-     CompChoice='';
-     result='';
-     RandomNum = Math.random()*3;
-    if(RandomNum > 0 && RandomNum < 1){
-      CompChoice = 'Rock';
-      result = `You Loose`;
-    }
-
-    else if(RandomNum > 1 && RandomNum < 2){
-      CompChoice = 'papper';
-      result = `You Win`;
-    }
-
-    else if(RandomNum > 2 && RandomNum < 3){
-      CompChoice = 'Scissors';
-      result = `It's a tie`;
-    }
-
-    alert(`User Choice is ${UserChoice} And Computer Choice is ${CompChoice} result is ${result}`);" 
-    >scissor</button>
+    onclick=" UserChoice = 'Scissor';
+    CompChoice = getcompchoice();
+    result=getResult(CompChoice, UserChoice);
+    alert(`User Choice = ${UserChoice}
+Computer Choice = ${CompChoice} 
+result = ${result}
+win : ${count.win} loose : ${count.loose} tie : ${count.tie}`);
+    "    >scissor</button>
   </div>
-  </div>
+
+  <script>
+
+    let count = {
+      tie : 0,
+      win : 0,
+      loose: 0,
+    };
+
+    function getcompchoice(){
+      let RandomNum = Math.random()*3;
+      if (RandomNum > 0 && RandomNum < 1)
+        return 'Rock';
+      else if (RandomNum > 1 && RandomNum < 2)
+        return 'Paper';
+      else 
+        return 'Scissor';
+    }
+
+    function getResult(CompChoice, UserChoice){
+      if(CompChoice == 'Rock'){
+        if(UserChoice == CompChoice){
+          count.tie++;
+          return 'its a tie';
+        }
+        else if(UserChoice === 'Paper'){
+          count.win++;
+          return 'You win';
+        }
+        else if(UserChoice === 'Scissor'){
+          count.loose++;
+          return 'You loose';
+        }
+      }
+
+      else if(CompChoice == 'Paper'){
+        if(UserChoice == CompChoice){
+          count.tie++;
+        return 'its a tie';
+        }
+        else if(UserChoice === 'Scissor'){
+          count.win++;
+          return 'You win';
+        }
+        else if(UserChoice === 'Rock'){
+          count.loose++;
+          return 'You loose';
+        }
+      }
+
+      else if(CompChoice == 'Scissor'){
+        if(UserChoice == CompChoice){
+          count.tie++;
+          return 'its a tie';
+        }
+
+        else if(UserChoice === 'Rock'){
+          count.win++;
+          return 'You win';
+        }
+        else if(UserChoice === 'Paper'){
+          count.loose++;
+          return 'You loose';
+        }
+      }
+    }
+
+  </script>
 </body>
 </html>
